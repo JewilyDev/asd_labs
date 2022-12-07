@@ -1,0 +1,3 @@
+C:/Users/jewil/CLionProjects/lab14/cmake-build-debug/CMakeFiles/lab14.dir
+C:/Users/jewil/CLionProjects/lab14/cmake-build-debug/CMakeFiles/edit_cache.dir
+C:/Users/jewil/CLionProjects/lab14/cmake-build-debug/CMakeFiles/rebuild_cache.dir

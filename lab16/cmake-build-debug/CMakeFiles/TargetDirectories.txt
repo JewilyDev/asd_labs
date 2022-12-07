@@ -1,0 +1,3 @@
+C:/Users/jewil/CLionProjects/lab16/cmake-build-debug/CMakeFiles/lab16.dir
+C:/Users/jewil/CLionProjects/lab16/cmake-build-debug/CMakeFiles/edit_cache.dir
+C:/Users/jewil/CLionProjects/lab16/cmake-build-debug/CMakeFiles/rebuild_cache.dir
