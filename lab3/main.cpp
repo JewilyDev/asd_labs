@@ -1,22 +1,33 @@
 #include <iostream>
-#include "math.h"
-int main() {
-    int x;
-    int a,b,c;
-    std::cin >> x;
-    for(int s = 1; s <= x; s++){
-        for(int i = 0; i <= (int)log2(x); i++){
-            a = i;
-            for(int j = 0; j <= (int)log2(x); j++){
-                b = j;
-                for(int k = 0; k <= (int)log2(x); k++){
-                    c = k;
-                    if(pow(3,a) * pow(5,b) * pow(7,c) == s)  {
-                        std::cout << s << "C" << std::endl;
-                    }
-                }
+#include <vector>
+#include <algorithm>
+std::vector <int> v;
+int main()
+{
+    int x = 1000;
+    int a = 1;
+    int b = 0;
+    int c = 0;
+    int i = 0;
+    while (a <= x)
+    {
+        b = a;
+        while (b <= x)
+        {
+            c = b;
+            while (c <= x)
+            {
+                v.push_back(c);
+                i++;
+                c *= 7;
             }
+            b *= 5;
         }
+        a *= 3;
     }
-    return 0;
+
+    sort(v.rbegin(), v.rend());
+
+    for (int k = 0; k < i; k++)
+        std::cout << v[k] << " " << std::endl;
 }
