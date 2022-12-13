@@ -2,7 +2,7 @@
 #include <stack>
 #include <string>
 #include <vector>
-class Tree
+class Tree // Комментарии добавлены только к методам, касающимся обхода, все пояснения к структуре дерева есть в ЛР 17.
 {
 public:
     int value;
@@ -145,14 +145,15 @@ public:
         return result;
     }
 };
-void direct(std::vector<int>& v, Tree* tree)
+void direct(std::vector<int>& v, Tree* tree) // Прямой обход бзе использования рекурсии
 {
-    std::stack <Tree*> s;
-    s.push(nullptr);
-    Tree* tempTree = tree;
+    std::stack <Tree*> s; // Создаём стек из указателей на узлы
+    s.push(nullptr); // Первым элементом(в итоге последним) точно будет пустой указатель
+    Tree* tempTree = tree; // сохраняем копию дерева, по которому совершаем обход
     do
     {
-        if (tempTree != nullptr)
+        if (tempTree != nullptr)  // Если полученный на вход указатель не пустой, тогда вставляем его в стек, и значение его вставляем в соотв.вектор,
+                                  // Сам же элемент сдвигаем влево.
         {
             s.push(tempTree);
             v.push_back(tempTree->value);
@@ -160,36 +161,36 @@ void direct(std::vector<int>& v, Tree* tree)
         }
         else
         {
-            if (s.top() == nullptr)
+            if (s.top() == nullptr) // Если стек пуст(имеется только пустой указатель), тогда завершаем обход
             {
                 break;
             }
-            tempTree = s.top();
-            s.pop();
-            tempTree = tempTree->right;
+            tempTree = s.top(); // Берём верхушку стека
+            s.pop(); // "снимаем её" на обход
+            tempTree = tempTree->right; // Двигаемся вправо
         }
     } while (true);
 }
 
 void center(std::vector<int>& v, Tree* tree)
 {
-    std::stack <Tree*> s;
-    s.push(nullptr);
-    Tree* tempTree = tree;
+    std::stack <Tree*> s; // Создаём стек из указателей на узлы
+    s.push(nullptr); // Первым элементом(в итоге последним) точно будет пустой указатель
+    Tree* tempTree = tree; // сохраняем копию дерева, по которому совершаем обход
     do
     {
         if (tempTree != nullptr)
         {
-            s.push(tempTree);
+            s.push(tempTree); // вставляем в стек текущий указатель и двигаемся влево
             tempTree = tempTree->left;
         }
         else
         {
-            if (s.top() == nullptr)
+            if (s.top() == nullptr) // если завершили обход - выходим
             {
                 break;
             }
-            tempTree = s.top();
+            tempTree = s.top(); // вынимаем указатель сверху и продолжаем обход вправо.
             s.pop();
             v.push_back(tempTree->value);
             tempTree = tempTree->right;
@@ -199,24 +200,24 @@ void center(std::vector<int>& v, Tree* tree)
 
 void reverse(std::vector<int>& v, Tree* tree)
 {
-    std::stack <Tree*> s;
-    Tree* lastVisited = nullptr;
-    Tree* tempTree = tree;
-    while (!s.empty() || tempTree != nullptr)
+    std::stack <Tree*> s; // Создаём  стек из указателей на узлы
+    Tree* lastVisited = nullptr; // Используем указатель последнего посещённого узла
+    Tree* tempTree = tree; // сохраняем копию дерева, по которому совершаем обход
+    while (!s.empty() || tempTree != nullptr) // Завершим обход если стек будет пуст и указатель обхода будет пустым
     {
         if (tempTree != nullptr)
         {
-            s.push(tempTree);
+            s.push(tempTree);  // вставляем в стек текущий указатель и двигаемся влево
             tempTree = tempTree->left;
         }
         else
         {
-            Tree* topTree = s.top();
-            if (topTree->right != nullptr && lastVisited != topTree->right)
+            Tree* topTree = s.top(); // вынимаем указатель сверху
+            if (topTree->right != nullptr && lastVisited != topTree->right) // Если последний посещенный узел не есть правый потомок, то двигаемся из узла вверху стека вправо
             {
                 tempTree = topTree->right;
             }
-            else
+            else // иначе указываем, что верхний элемент стека - последний посещённый, и извлекаем его.
             {
                 v.push_back(topTree->value);
                 lastVisited = s.top();
