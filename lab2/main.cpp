@@ -4,12 +4,10 @@
 bool isExist(const std::string& str)
 {
     std::stack<char> subseq_stack; // Основной стек для работы с последовательностью
-    bool flag = false; // Флаг наличия хотя бы одной открывающей скобки
     for(int i = 0; i < str.length(); i++){
         char bracket = str[i];
         if(bracket == '(' || bracket == '{' || bracket == '['){ // Записываем в стек открывающуюся скобку, и устанавливаем флаг
             subseq_stack.push(bracket);
-            flag = true;
         } else if (bracket == ')' || bracket == '}' || bracket == ']'){
             int modifier;
             if(bracket == ')')
@@ -27,7 +25,7 @@ bool isExist(const std::string& str)
         if(!bracket) //Заканчиваем цикл
             break;
     }
-    return(flag && subseq_stack.empty());  // Если открывающаяся скобка была, и стек пуст, то такая последовательность является ПСП.     
+    return(subseq_stack.empty());  // Если открывающаяся скобка была, и стек пуст, то такая последовательность является ПСП.     
 }
 
 bool isOperation(const char symbol) // Функция-провекра на то, что заданный символ - символ операции
