@@ -3,14 +3,14 @@
 #include <string> 
 bool isExist(const std::string& str)
 {
-	std::stack<char> subseq_stack; // Основной стек для работы с последовательностью
+    std::stack<char> subseq_stack; // Основной стек для работы с последовательностью
     bool flag = false; // Флаг наличия хотя бы одной открывающей скобки
     for(int i = 0; i < str.length(); i++){
         char bracket = str[i];
         if(bracket == '(' || bracket == '{' || bracket == '['){ // Записываем в стек открывающуюся скобку, и устанавливаем флаг
             subseq_stack.push(bracket);
             flag = true;
-        }else{
+        } else if (bracket == ')' || bracket == '}' || bracket == ']'){
             int modifier;
             if(bracket == ')')
                 modifier = 1;
