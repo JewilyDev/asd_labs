@@ -11,7 +11,7 @@ int main() {
         if(bracket == '(' || bracket == '{' || bracket == '['){ // Записываем в стек открывающуюся скобку, и устанавливаем флаг
             subseq_stack.push(bracket);
             flag = true;
-        }else{
+        } else if (bracket == ')' || bracket == '}' || bracket == ']'){
             int modifier;
             if(bracket == ')')
                 modifier = 1;
